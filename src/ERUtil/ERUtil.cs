@@ -8,7 +8,7 @@ namespace ERMapping
   class ERUtil
   {
     static readonly int RESULT_LIMIT = 100; // API limit
-    static readonly HttpClient client = new HttpClient();
+    static readonly HttpClient CLIENT = new HttpClient();
 
     /// <summary>
     /// Requests data from the supplied endpoint.
@@ -27,7 +27,7 @@ namespace ERMapping
         do
         {
           string formedUrl = $"{url}?page={page++}&limit={RESULT_LIMIT}";
-          HttpResponseMessage res = await client.GetAsync(formedUrl);
+          HttpResponseMessage res = await CLIENT.GetAsync(formedUrl);
           res.EnsureSuccessStatusCode();
 
           JObject intResult = JObject.Parse(await res.Content.ReadAsStringAsync());
